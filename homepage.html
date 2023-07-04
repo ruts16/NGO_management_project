@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,
+			initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="cube.css">
+
+	<!--  CSS -->
+	<link rel="stylesheet" href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity=
+"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous">
+
+	<title>Restaurant Website</title>
+  <link rel="stylesheet" href="homepage.css">
+<style>
+<--footer-->
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+.footer-section {
+  background: #151414;
+  position: relative;
+}
+.footer-cta {
+  border-bottom: 1px solid #373636;
+}
+.single-cta i {
+  color: #ff5e14;
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.cta-text h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.cta-text span {
+  color: #757575;
+  font-size: 15px;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-pattern img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 330px;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.footer-logo {
+  margin-bottom: 30px;
+}
+.footer-logo img {
+    max-width: 200px;
+}
+.footer-text p {
+  margin-bottom: 14px;
+  font-size: 14px;
+      color: #7e7e7e;
+  line-height: 28px;
+}
+.footer-social-icon span {
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+}
+.footer-social-icon a {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%;
+}
+.facebook-bg{
+  background: #3B5998;
+}
+.twitter-bg{
+  background: #55ACEE;
+}
+.google-bg{
+  background: #DD4B39;
+}
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #ff5e14;
+}
+.footer-widget ul li {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover{
+  color: #ff5e14;
+}
+.footer-widget ul li a {
+  color: #878787;
+  text-transform: capitalize;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: 1px solid #2E2E2E;
+  color: #fff;
+}
+.subscribe-form button {
+    position: absolute;
+    right: 0;
+    background: #ff5e14;
+    padding: 13px 20px;
+    border: 1px solid #ff5e14;
+    top: 0;
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
+}
+.copyright-area{
+  background: #202020;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+.copyright-text p a{
+  color: #ff5e14;
+}
+.footer-menu li {
+  display: inline-block;
+  margin-left: 20px;
+}
+.footer-menu li:hover a{
+  color: #ff5e14;
+}
+.footer-menu li a {
+  font-size: 14px;
+  color: #878787;
+}
+<-->
+// fonts
+$font-header: Montserrat, helvetica;
+$font-nav : "Space Mono", monospace;
+// colors
+$color-dark: #111;
+$color-border: #ccc;
+$color-trans-bg: #ededed;
+// easings
+$ease-cb: cubic-bezier(.4,0,.2,1);
+$ease-cb-2: cubic-bezier(.19,1,.22,1);
+$ease-cb-3: cubic-bezier(.77,0,.175,1);
+$ease-cb-4: cubic-bezier(.99,1,.92,1);
+// padding
+$pad: 3em;
+// mqs
+$mq-med: 54em;
+$mq-large: 65em;
+$mq-xlarge: 91em;
+
+
+//------------------------------
+//  nth-trans-delay()
+//  Transition Delay on nth-childs
+//  @param: $delay_items: number of nth-of-type items to create
+//  @param: $delay_time: transition-dealy value
+//-----------------------------
+@mixin nth-trans-delay($delay_items: 7, $delay_time: 0.2s){
+  @for $i from 1 through $delay_items {
+    &:nth-child(#{$i}) {   
+     transition-delay: $delay_time * $i; 
+    }
+  }
+}
+
+//-------------------------------
+//  Body, prevent scrolling
+//-------------------------------
+body{
+  height: 100%;
+  overflow-y:hidden;
+}
+
+//-------------------------------
+//  Slides Nav
+//-------------------------------
+.slides-nav{
+  z-index: 99;
+  position: fixed;
+  // Grimey, not sure why
+  // 0 isn't working
+  right: -5%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #111;
+  
+  @media (min-width: $mq-med){
+    right: 2%;
+  }
+
+  &__nav{
+    position: relative;
+    right: 0;
+    display: block;
+    font-size: 1em;
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+
+  button{
+    position: relative;
+    display:inline-block;
+    padding: 0.35em;
+    margin: 0;
+    font-family: $font-nav;
+    appearance: none;
+    background:transparent;
+    border: 0;
+    overflow-x:hidden;
+    transition: color 0.5s ease;
+    
+    &:after{
+      content:'';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height:1px;
+      width: 0;
+      background: $color-dark;
+      transition: width 0.4s ease;
+    }
+    &:hover{
+      cursor:pointer;
+      color: rgba($color-dark, 0.75);
+      transition: color 0.5s ease;
+    }
+    &:hover:after{
+      width:100%;
+      transition: width 0.4s ease;
+    }
+    // Yeah... I know
+    &:focus{
+      outline: 0;
+    }
+  }
+  // If is Sliding, prevent 
+  // double clicks
+  .is-sliding &{
+    pointer-events:none;
+  }
+}
+
+//-------------------------------
+//  Slides
+//-------------------------------
+.slides{
+  position: relative;
+  display: block;
+  height: 100vh;
+  width:100%;
+  background: #fff;
+  transition: background 1s $ease-cb-4;
+
+  .is-sliding &{
+    background: $color-trans-bg;
+    transition: background 0.3s $ease-cb-4;
+  }
+}
+
+//-------------------------------
+//  Single Slide
+//-------------------------------
+$slide-content-size-sm: 95%;
+$slide-content-size: 80%;
+
+.slide{
+  z-index: -1;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  transition: z-index 1s ease;
+  
+  // Bring active layer to foreground
+  &.is-active{
+    z-index: 19;
+    transition: z-index 1s ease;
+  }
+
+  &__content{
+    position: relative;
+    margin: 0 auto;
+    height: $slide-content-size-sm;
+    width: $slide-content-size-sm;
+    top: (100% - $slide-content-size-sm) / 2;
+    
+    @media (min-width: $mq-med){
+      height: $slide-content-size;
+      width: $slide-content-size;
+      top: (100% - $slide-content-size) / 2;
+    }
+  }
+
+  &__header{
+    z-index: 9;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    transform: translateX(5%);
+    
+    @media (min-width: $mq-med){
+      transform: translateX(-5%);
+    }
+  }
+
+  &__title{
+    font-family: $font-header;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: $color-dark;
+    overflow-y: hidden;
+    
+    @media (min-width: $mq-med){
+      font-size: 5em;
+    }
+     
+    // Slice text animation
+    .title-line{
+      display: block;
+      overflow-y: hidden;
+
+      span{
+        display: inline-block;
+        transform:translate3d(0,140%,0);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.8s ease;
+        @include nth-trans-delay(2, 0.15s);
+      }
+
+      .is-active & span{
+        transform:translate3d(0,0%,0);
+        opacity: 1;
+        transition: transform 0.6s $ease-cb-3, opacity 0.1s ease;
+      }
+      .is-active &:nth-of-type(2n) span{
+        transition-delay:0.2s;
+      }
+    }
+  }
+  
+  // Image wrapper
+  &__figure{
+    z-index: 7;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    //overflow-y: hidden;
+    transition: transform 0.5s $ease-cb-2;
+     
+    // Scale Image
+    .is-sliding &{
+      transform: scale(0.8);
+      transition: transform 0.5s $ease-cb-2;
+    }
+  }
+  &__img{
+    position: relative;
+    display: block;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50%;
+     -webkit-backface-visibility: hidden;
+     //will-change:height;
+    height: 0%;
+    width: 100%;
+    filter: grayscale(0%);
+    transition: height 1s 1.4s $ease-cb-2, filter 0.4s 0.1s ease;
+      
+    .is-active &{
+      height: 100%;
+      opacity: 1;
+      transition: height .5s .3s $ease-cb-3, filter 0.4s 0.1s ease;
+    }
+    .is-sliding &{
+      filter: grayscale(100%);
+    }
+  }
+}
+
+<--footer-->
+nav a { color: black; display: inline-block; margin: 0 4px; text-decoration: none; }
+nav a:first-child { margin: 0 4px 0 0; }
+
+main { margin: 0 5%; }
+
+.home-page { display: grid; font-size: 24px; grid-template-columns: 50% 50%; line-height: 1.4; margin: 2em auto 0 auto; max-width: 45em; padding: 0; }
+.home-page h1 { font-size: 1em; margin: 4em 0 0 0; }
+.home-page .button { margin: 1em 0; }
+
+footer { background-color: #000000; color: rgba(255, 255, 255, 0.6); padding: 5%; }
+
+@media screen and (max-width: 45em) {
+  .home-page { display: block; }
+}
+html, body { padding: 0; margin: 0; }
+.image-grid div {
+  width: 25%;
+  height: 240px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image01 { background-image: url('https://media.istockphoto.com/photos/wedding-rings-picture-id171238521?k=20&m=171238521&s=612x612&w=0&h=pRnB_w4-h3um2bBsbvd1w3VBHTNgHw3PxgbL90bBuIw='); }
+.image02 { background-image: url('https://media.istockphoto.com/photos/wedding-rings-picture-id176830145?k=20&m=176830145&s=612x612&w=0&h=Y5_wIFg5wAiT8pWyXXAqDf4AOwralEeO8CQfofuZ7AU='); }
+.image03 { background-image: url('https://media.istockphoto.com/photos/golden-rings-picture-id666692888?k=20&m=666692888&s=612x612&w=0&h=4ZFl6KutQPQUyov5q4FTSW5zMCSfbkkVNszd4e7IhhM='); }
+.image04 { background-image: url('https://media.istockphoto.com/photos/wedding-rings-picture-id627887498?k=20&m=627887498&s=612x612&w=0&h=gi6JRBL7e_zIcw4Ym_woiJfSW6W2dR6QQel1rywE1MA='); }
+.image05 { background-image: url('https://media.istockphoto.com/photos/to-have-and-to-hold-picture-id1038543134?k=20&m=1038543134&s=612x612&w=0&h=zhVcmuqnz7RUXI3wTvXaPgYr0lIXvJ0nYQs2fNe_fb4='); }
+.image06 { background-image: url('https://media.istockphoto.com/photos/couple-promise-love-of-the-eternity-picture-id1264529647?k=20&m=1264529647&s=612x612&w=0&h=ng7nVzvMRwdoh78zxYMouoxGLhJzFOKBhnsJfNbrGC8='); }
+.image07 { background-image: url('https://media.istockphoto.com/photos/rose-and-a-ring-picture-id1370498072?k=20&m=1370498072&s=612x612&w=0&h=CFvjByXVWT50kOmM4SmBU5bRsN5pR94ZA3ChFUzqOY0='); }
+.image08 { background-image: url('https://media.istockphoto.com/photos/indian-engagement-ring-picture-id1355287812?k=20&m=1355287812&s=612x612&w=0&h=6sV1zq9sKunvDD9wIQkSslWZj1wOfCbZKnG5q1re0Zw='); }
+.image09 { background-image: url('https://media.istockphoto.com/photos/gold-ring-for-bridegroom-giving-gold-ring-as-gift-of-wedding-to-his-picture-id1347454869?k=20&m=1347454869&s=612x612&w=0&h=zCq-8w6n4s_FhXhhCLGqeGYpC7oidzjSQbzfsnxi09s='); }
+.image10 { background-image: url('https://media.istockphoto.com/photos/woman-holding-a-diamond-ring-picture-id1206582938?k=20&m=1206582938&s=612x612&w=0&h=58YDFbsojDF6tRT97SCA7Ix7zoETuSvQMW4TC79yaeM='); }
+.image11 { background-image: url('https://media.istockphoto.com/photos/groom-holding-wedding-rings-picture-id1186576465?k=20&m=1186576465&s=612x612&w=0&h=y4hMX2TTf-DrIuKeF_0ncDh_09sAwrP5QEqUFcDLjTY='); }
+.image12 { background-image: url('https://media.istockphoto.com/photos/the-brides-bouquet-picture-id538771524?k=20&m=538771524&s=612x612&w=0&h=ngocoLkc5Jv5-WiZ1wM6ZiV5vDq9TxT9jdaJdM8oZKQ='); }
+
+@media screen and (max-width: 400px) {
+  .image-grid {
+    flex-direction: column;
+    flex-wrap: no-wrap;
+  }
+  .image-grid div { width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+	<!-- navbar --><!-- MENU OVERLAY -->
+    <div class="overlay overlay-slide-left" id="overlay">
+      <!-- MENU ITEMS -->
+      <nav>
+        <ul>
+          <li id="nav-1" class="slide-out-1 center">
+            <a href="homepage.html" class="center">Home</a>
+          </li>
+          <li id="nav-2" class="slide-out-2 center">
+            <a href="donate.html" class="center">Our Work</a>
+          </li>
+          <li id="nav-3" class="slide-out-3 center">
+            <a href="#skills" class="center">Campaigns</a>
+          </li>
+          <li id="nav-4" class="slide-out-4 center">
+            <a href="https://www.techtotherescue.org/ngo?utm_source=googleads&utm_medium=paid&utm_campaign=03_Tech_Global&gclid=Cj0KCQiA4uCcBhDdARIsAH5jyUl1DGW21Ml9q3zStwD9xbwtTMHcLNhoI2y4fkkX3hxEsLzt3xYKwHwaAul2EALw_wcB" class="center">Get Involved</a>
+          </li>
+          <li id="nav-5" class="slide-out-5 center">
+            <a href="lastlogin.html" class="center">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- menu-->
+    <div class="hamburger-menu" id="hamburger-menu">
+      <div class="menu-bar1"></div>
+      <div class="menu-bar2"></div>
+      <div class="menu-bar3"></div>
+    </div>
+    <!-- SECTIONS -->
+    <section id="home" class="center">
+      <a href="http://krishandeep.com/" target="_blank" class="logo">TAARE ZAMEEN PAR</a>
+    </section>
+    <section id="about" class="center"><h1>EDUCATION</h1></section>
+    <section id="skills" class="center"><h1>HEALTHCARE</h1></section>
+    <section id="projects" class="center"><h1>WOMEN EMPOWERMENT</h1></section>
+    <section id="contact" class="center"><h1>LIVELIHOOD</h1></section>
+
+
+
+</font>
+			</h3>
+
+
+		</article>
+	</section>
+
+	<div class="wrapper"> 
+  <header class="site-header">
+    <nav>
+      <a href="/"><strong>JR</strong></a> | 
+      <a href="/">Blog</a>
+      <a href="/">Books</a>
+      <a href="/">Info</a>
+      <a href="/">Newsletter</a>
+      <a href="/">Podcasts</a>
+      <a href="/">Speaking</a>
+    </nav>
+  </header>
+<footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>1010 Avenue, sw 54321, chandigarh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>9876543210 0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>taarezameenpaar@info.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo"><a href="index.html"></a>
+                            </div>
+                            <div class="footer-text">
+                                <p>Incredible Donation, Incredible You</p>
+                            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">about</a></li>
+                                <li><a href="#">services</a></li>
+                                <li><a href="#">portfolio</a></li>
+                                <li><a href="lastlogin.html">Contact</a></li>
+                                <li><a href="">About us</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Expert Team</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Latest News</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Email Address">
+                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2018, All Right Reserved <a href="https://codepen.io/anupkumar92/">TAARE ZAMEEN PAAR!!@</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="homepage.html">Home</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Policy</a></li>
+                                <li><a href="lastlogin.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script>
+const hamburgerMenu = document.querySelector("#hamburger-menu");
+const overlay = document.querySelector("#overlay");
+const nav1 = document.querySelector("#nav-1");
+const nav2 = document.querySelector("#nav-2");
+const nav3 = document.querySelector("#nav-3");
+const nav4 = document.querySelector("#nav-4");
+const nav5 = document.querySelector("#nav-5");
+const navItems = [nav1, nav2, nav3, nav4, nav5];
+
+// Control Navigation Animation
+function navAnimation(val1, val2) {
+  navItems.forEach((nav, i) => {
+    nav.classList.replace(`slide-${val1}-${i + 1}`, `slide-${val2}-${i + 1}`);
+  });
+}
+
+function toggleNav() {
+  // Toggle: Hamburger Open/Close
+  hamburgerMenu.classList.toggle("active");
+
+  //   Toggle: Menu Active
+  overlay.classList.toggle("overlay-active");
+
+  if (overlay.classList.contains("overlay-active")) {
+    // Animate In - Overlay
+    overlay.classList.replace("overlay-slide-left", "overlay-slide-right");
+
+    // Animate In - Nav Items
+    navAnimation("out", "in");
+  } else {
+    // Animate Out - Overlay
+    overlay.classList.replace("overlay-slide-right", "overlay-slide-left");
+
+    // Animate Out - Nav Items
+    navAnimation("in", "out");
+  }
+}
+
+// Events Listeners
+hamburgerMenu.addEventListener("click", toggleNav);
+navItems.forEach((nav) => {
+  nav.addEventListener("click", toggleNav);
+});
+</script>
+<script>
+(function($) {
+ 
+  var SliceSlider = {
+    
+    /**
+     * Settings Object
+     */
+    settings: {
+      delta:              0,
+      currentSlideIndex:  0,
+      scrollThreshold:    40,
+      slides:             $('.slide'),
+      numSlides:          $('.slide').length,
+      navPrev:            $('.js-prev'),
+      navNext:            $('.js-next'),
+    },
+    
+    /**
+     * Init
+     */
+    init: function() {
+      s = this.settings;
+      this.bindEvents();
+    },
+    
+    /**
+     * Bind our click, scroll, key events
+     */
+    bindEvents: function(){
+      
+      // Scrollwheel & trackpad
+      s.slides.on({
+        'DOMMouseScroll mousewheel' : SliceSlider.handleScroll
+      });
+      // On click prev
+      s.navPrev.on({
+        'click' : SliceSlider.prevSlide
+      });
+      // On click next
+      s.navNext.on({
+        'click' : SliceSlider.nextSlide
+      });
+      // On Arrow keys
+      $(document).keyup(function(e) {
+        // Left or back arrows
+        if ((e.which === 37) ||  (e.which === 38)){
+          SliceSlider.prevSlide();
+        }
+        // Down or right
+        if ((e.which === 39) ||  (e.which === 40)) {
+          SliceSlider.nextSlide();
+        }
+      });
+    },
+    
+    /** 
+     * Interept scroll direction
+     */
+    handleScroll: function(e){
+
+      // Scrolling up
+      if (e.originalEvent.detail < 0 || e.originalEvent.wheelDelta > 0) { 
+
+        s.delta--;
+     
+        if ( Math.abs(s.delta) >= s.scrollThreshold) {
+          SliceSlider.prevSlide();
+        }
+      }
+ 
+      // Scrolling Down
+      else {
+ 
+        s.delta++;
+ 
+        if (s.delta >= s.scrollThreshold) {
+          SliceSlider.nextSlide();
+        }
+      }
+ 
+      // Prevent page from scrolling
+      return false;
+    },
+
+    /**
+     * Show Slide
+     */
+    showSlide: function(){ 
+      // reset
+      s.delta = 0;
+      // Bail if we're already sliding
+      if ($('body').hasClass('is-sliding')){
+        return;
+      }
+      // Loop through our slides
+      s.slides.each(function(i, slide) {
+
+        // Toggle the is-active class to show slide
+        $(slide).toggleClass('is-active', (i === s.currentSlideIndex)); 
+        $(slide).toggleClass('is-prev', (i === s.currentSlideIndex - 1)); 
+        $(slide).toggleClass('is-next', (i === s.currentSlideIndex + 1)); 
+        
+        // Add and remove is-sliding class
+        $('body').addClass('is-sliding');
+
+        setTimeout(function(){
+            $('body').removeClass('is-sliding');
+        }, 1000);
+      });
+    },
+
+    /**
+     * Previous Slide
+     */
+    prevSlide: function(){
+      
+      // If on first slide, loop to last
+      if (s.currentSlideIndex <= 0) {
+        s.currentSlideIndex = s.numSlides;
+      }
+      s.currentSlideIndex--;
+      
+      SliceSlider.showSlide();
+    },
+
+    /**
+     * Next Slide
+     */
+    nextSlide: function(){
+      
+      s.currentSlideIndex++;
+   
+      // If on last slide, loop to first
+      if (s.currentSlideIndex >= s.numSlides) { 
+        s.currentSlideIndex = 0;
+      }
+ 
+      SliceSlider.showSlide();
+    },
+  };
+  SliceSlider.init();
+})(jQuery);
+</script>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity=
+"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+	</script>
+	
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity=
+"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous">
+	</script>
+	
+	<script src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity=
+"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous">
+	</script>
+</body>
+
+</html>
